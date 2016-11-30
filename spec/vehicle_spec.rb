@@ -64,4 +64,24 @@ describe(Vehicle)do
       expect(test_vehicle.worth_buying?()).to(eq(false))
     end
   end
+
+  describe('#id') do
+    it('returns the id of the vehicle') do
+      test_vehicle = Vehicle.new({:make=> "Toyota", :model => "Prius", :year => "2000"})
+      test_vehicle.save()
+      expect(test_vehicle.id()).to(eq(1))
+    end
+  end
+
+  describe(".find") do
+    it("returns a vehicle by its id number") do
+      test_vehicle = Vehicle.new({:make=> "Toyota", :model => "Prius", :year => "2000"})
+      test_vehicle.save()
+      test_vehicle2 = Vehicle.new({:make=> "Toyota", :model => "Corolla", :year => "1999"})
+      test_vehicle2.save()
+      expect(Vehicle.find(test_vehicle.id())).to(eq(test_vehicle))
+    end
+  end
+
+
 end
