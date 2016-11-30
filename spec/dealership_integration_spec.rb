@@ -39,4 +39,22 @@ describe('add car route', {:type => :feature}) do
     click_button('Add Vehicle')
     expect(page).to have_content('Success!')
   end
+
+  it('adds a car to a dealership') do
+    visit('/')
+    click_link('Add New Dealership')
+    fill_in('name', :with => 'Roys Dealership')
+    click_button('Add Dealership')
+    click_link('See Dealership List')
+    click_link('Roys Dealership')
+    click_link('Add a new vehicle')
+    fill_in('make', :with => "Honda")
+    fill_in('model', :with => "Civic")
+    fill_in('year', :with => "2008")
+    click_button('Add Vehicle')
+    click_link('See Dealership List')
+    click_link('Roys Dealership')
+    click_link('Honda Civic 2008')
+    expect(page).to have_content('Honda Civic 2008')
+  end
 end
